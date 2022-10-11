@@ -9,7 +9,7 @@ NNlib = "872c559c-99b0-510c-b3b7-b6c96a88d5cd"
 Optim = "429524aa-4258-5aef-a3af-852621145aeb"
 
 [compat]
-Julia = "1.6.0"
+julia = "1.6.0"
 Distributions = "0.25.76"
 Optim = "1.7.3"
 NNlib = "0.8.9"
