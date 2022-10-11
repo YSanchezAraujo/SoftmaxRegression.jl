@@ -1,4 +1,4 @@
-# softmax_regression
+# SoftmaxRegression example
 simple functions for performing classification of n > 2 classes
 
 ```julia
