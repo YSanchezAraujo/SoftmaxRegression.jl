@@ -8,7 +8,11 @@ simple functions for performing classification of n > 2 classes
 add https://github.com/YSanchezAraujo/SoftmaxRegression.jl
 ```
 
+
+## Example usage
 ```julia
+using SoftmaxRegression;
+
 # assuming you have X (design matrix with global intercept) and y  (class label vector)
 
 ests = softmax_regression_opt(X, y; lam=0.7, verbose=true);
