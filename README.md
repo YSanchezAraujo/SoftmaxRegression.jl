@@ -13,7 +13,7 @@ add https://github.com/YSanchezAraujo/SoftmaxRegression.jl
 ```julia
 using SoftmaxRegression;
 
-# assuming you have X (design matrix with global intercept) and y  (class label vector)
+# assuming you have X (design matrix) and y  (class label vector)
 
 ests = softmax_regression_opt(X, y; lam=0.7, verbose=true);
 
