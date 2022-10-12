@@ -119,8 +119,28 @@ function predict_softmax_opt(X::Matrix, intercepts, betas)
     return (c = vec(class_index), p = probs)
 end
 
+function var_estimates(X, y, probs)
+    n_class = maximum(y)
+            
+    n_per_class = countmap(y)
+            
+    W_per_class = [
+        diagm(n_per_class[j] * probs[:, j] .* (1 .- probs[:, j]))
+        for j in 1:n_class
+    ]
+                
+    V = [pinv(X' * W_per_class[j] * X) for j in 1:n_class]
+    
+    stderrs = hcat([sqrt.(diag(V[j])) for j in 1:n_class]...)
+    
+    return (vcov = V, stderr = stderrs)
+            
+end
+        
+        
 export 
-        softmax_regression_negloglik, softmax_regression_opt, predict_softmax_opt
+        softmax_regression_negloglik, softmax_regression_opt, predict_softmax_opt,
+        var_estimates
         
 
 end # module
