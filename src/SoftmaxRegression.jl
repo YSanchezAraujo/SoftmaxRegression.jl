@@ -35,7 +35,7 @@ function softmax_regression_negloglik(params, X, y; lam = 0)
 
     loglik = 0
 
-    for k in 1:n_samps
+    for k in 1:n_samp
         
         p = softmax([0; vals[k, :]])
         
