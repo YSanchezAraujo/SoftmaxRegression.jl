@@ -24,4 +24,9 @@ mean(preds.c .== y)
 
 # if you want to look at class probabilities check preds.p
 
+
+# get standard errors and variance-covariance matrices for each set of coefficients
+# err_ests.vcov[k] contains variance-covariance matrix for vector beta_k (for class y=k)
+# err_sts.stderr contains the (p by k) matrix for p covariates and k classes of standard error estimates
+err_ests = var_estimates(X, y, preds.p) 
 ```
