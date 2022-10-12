@@ -139,7 +139,7 @@ function var_estimates(X, y, probs)
     n_per_class = countmap(y)
             
     W_per_class = [
-        diagm(n_per_class[j] * probs[:, j] .* (1 .- probs[:, j]))
+        diagm(probs[:, j] .* (1 .- probs[:, j]))
         for j in 1:n_class
     ]
                 
