@@ -141,7 +141,7 @@ function var_estimates(X, y, probs)
         for j in 1:n_class
     ]
                 
-    V = [inv(X' * W_per_class[j] * X) for j in 1:n_class]
+    V = [pinv(X' * W_per_class[j] * X) for j in 1:n_class]
     
     stderrs = hcat([sqrt.(diag(V[j])) for j in 1:n_class]...)
     
