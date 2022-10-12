@@ -119,5 +119,10 @@ function predict_softmax_opt(X::Matrix, intercepts, betas)
     return (c = vec(class_index), p = probs)
 end
 
+export 
+        softmax_regression_negloglik
+        softmax_regression_opt
+        predict_softmax_opt
+        
 
 end # module
