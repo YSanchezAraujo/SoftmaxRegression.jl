@@ -1,6 +1,13 @@
 # SoftmaxRegression example
 simple functions for performing classification of n > 2 classes
 
+## Installation
+
+```julia
+# get into the package manager by pressing the ] key on keyboard
+add https://github.com/YSanchezAraujo/SoftmaxRegression.jl
+```
+
 ```julia
 # assuming you have X (design matrix with global intercept) and y  (class label vector)
 
