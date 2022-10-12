@@ -120,9 +120,7 @@ function predict_softmax_opt(X::Matrix, intercepts, betas)
 end
 
 export 
-        softmax_regression_negloglik
-        softmax_regression_opt
-        predict_softmax_opt
+        softmax_regression_negloglik, softmax_regression_opt, predict_softmax_opt
         
 
 end # module
