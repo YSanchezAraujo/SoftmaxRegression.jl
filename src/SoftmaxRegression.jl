@@ -3,6 +3,7 @@ module SoftmaxRegression
 using Distributions: logpdf, Categorical;
 using Optim;
 using NNlib: softmax;
+using LinearAlgebra: pinv;
 
 """
 inputs (required): 
