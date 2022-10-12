@@ -119,6 +119,20 @@ function predict_softmax_opt(X::Matrix, intercepts, betas)
     return (c = vec(class_index), p = probs)
 end
 
+        
+"""
+ inputs (required): 
+    X: design matrix for test or train set samples\n
+
+    y: array of class labels\n
+
+    probs: predicted class probabilties
+
+outputs: 
+
+   tuple with variance-covariance matrix for coefficient estimates
+   associated with each class and the standard error estimates associated with each class\n
+"""
 function var_estimates(X, y, probs)
     n_class = maximum(y)
             
