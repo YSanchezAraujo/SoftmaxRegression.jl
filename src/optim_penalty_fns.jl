@@ -82,25 +82,6 @@ function softmax_regression_opt(X, y, lam; verbose=true)
 
     return (intercepts = b0s, betas = beta_est)
 end
-
-"""
-inputs (required): 
-    X: design matrix for test or train set samples\n
-    intercepts: estimated intercepts as a 1-d array\n
-    betas: estimated coefficent matrix
-outputs: 
-   tuple with class labels and class probabilities
-"""
-function predict_softmax_opt(X::Matrix, intercepts, betas)
-    vals = intercepts' .+ X * betas
-
-    probs = mapslices(softmax, vals, dims=2)
-
-    class_index = mapslices(argmax, vals, dims=2)
-
-    return (c = vec(class_index), p = probs)
-end
-
         
 """
  inputs (required): 
