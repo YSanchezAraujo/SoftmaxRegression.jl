@@ -18,6 +18,7 @@ using SoftmaxRegression;
 est = fit_softmax(X, y);
 
 # a version with an l2-penalty
+# penalties must be >= 0, with larger penalties resulting in more regularization
 est = fit_softmax(X, y, 0.7);
 
 # est will be a tuple, check it's names to get accuracy, predictions, estimated coefficient weights (betas), ect. 
