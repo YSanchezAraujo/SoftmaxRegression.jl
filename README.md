@@ -19,4 +19,6 @@ est = fit_softmax(X, y);
 
 # a version with an l2-penalty
 est = fit_softmax(X, y, 0.7);
+
+# est will be a tuple, check it's names to get accuracy, predictions, estimated coefficient weights (betas), ect. 
 ```
