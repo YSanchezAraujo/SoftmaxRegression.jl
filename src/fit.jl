@@ -60,16 +60,16 @@ function fit_softmax(X, y, lam = nothing, verbose = true)
   if isnothing(lam) || lam == 0
       println("using y == 1 as reference class")
     
-      ests = softmax_regression_opt(X, y; verbose = verbose)
+      ests = softmax_regression_opt(X, y, verbose)
 
       preds = predict_softmax_opt(X, ests.intercepts, ests.betas)
 
       vcv = var_estimates(X, y, preds.p)
         
   else
-      ests = softmax_regression_opt(X, y, lam; verbose = verbose) 
+      ests = softmax_regression_opt(X, y, lam, verbose) 
       
-      preds = predict_softmax_opt(X, ests.intercepts, ests.betas; lam=lam)
+      preds = predict_softmax_opt(X, ests.intercepts, ests.betas, lam)
 
       vcv = var_estimates(X, y, preds.p, lam)
 
