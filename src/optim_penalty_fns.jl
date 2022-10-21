@@ -1,8 +1,3 @@
-using Distributions: logpdf, Categorical;
-using Optim;
-using NNlib: softmax;
-using LinearAlgebra: pinv;
-
 """
 inputs (required): 
     params: vector (contains n_intercepts + length(vec(betas)) parameters)
@@ -56,7 +51,7 @@ outputs:
      res.intercepts # to access the estimated intercepts
      res.betas # to access the coefficient matrix
 """
-function softmax_regression_opt(X, y, lam; verbose=true)
+function softmax_regression_opt(X, y, lam, verbose=true)
     n_samp, n_cols = size(X)
 
     n_class = length(unique(y))
@@ -70,7 +65,7 @@ function softmax_regression_opt(X, y, lam; verbose=true)
 
     all_params = [intercepts; beta_arr]
 
-    opt = optimize(w -> softmax_regression_negloglik(w, X, y, lam=lam), all_params, BFGS(); autodiff=:forward)
+    opt = optimize(w -> softmax_regression_negloglik(w, X, y, lam), all_params, BFGS(); autodiff=:forward)
 
     if verbose
         println(opt)
@@ -92,7 +87,7 @@ outputs:
    tuple with variance-covariance matrix for coefficient estimates
    associated with each class and the standard error estimates associated with each class\n
 """
-function var_estimates(X, y, probs)
+function var_estimates(X, y, probs, lam)
     n_class = maximum(y)
                         
     W_per_class = [

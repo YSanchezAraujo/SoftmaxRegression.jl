@@ -1,10 +1,3 @@
-using Distributions: logpdf, Categorical;
-using Optim;
-using NNlib: softmax;
-using LinearAlgebra: pinv;
-
-
-
 """
 inputs (required): 
     params: vector (contains n_intercepts + length(vec(betas)) parameters)
@@ -52,7 +45,7 @@ outputs:
      res.intercepts # to access the estimated intercepts
      res.betas # to access the coefficient matrix
 """
-function softmax_regression_opt(X, y; verbose=true)
+function softmax_regression_opt(X, y, verbose=true)
     n_samp, n_cols = size(X)
 
     n_class = length(unique(y))
@@ -77,4 +70,29 @@ function softmax_regression_opt(X, y; verbose=true)
     beta_est = reshape(opt.minimizer[n_class:end], (n_cols, n_class-1))
 
     return (intercepts = b0s, betas = beta_est)
+end
+
+"""
+ inputs (required): 
+    X: design matrix for test or train set samples\n
+    y: array of class labels\n
+    probs: predicted class probabilties
+outputs: 
+   tuple with variance-covariance matrix for coefficient estimates
+   associated with each class and the standard error estimates associated with each class\n
+"""
+function var_estimates(X, y, probs)
+    n_class = maximum(y)
+                        
+    W_per_class = [
+        diagm(probs[:, j] .* (1 .- probs[:, j]))
+        for j in 2:n_class
+    ]
+                
+    V = [pinv(X' * W_per_class[j] * X) for j in 1:n_class-1]
+    
+    stderrs = hcat([sqrt.(diag(V[j])) for j in 1:n_class-1]...)
+    
+    return (vcov = V, stderr = stderrs)
+            
 end
