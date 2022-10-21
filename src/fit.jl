@@ -89,4 +89,3 @@ function fit_softmax(X, y, lam = nothing, verbose = true)
           )
   
 end
-
